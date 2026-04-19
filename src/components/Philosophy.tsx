@@ -16,21 +16,8 @@ export function Philosophy() {
   return (
     <section ref={sectionRef} id="definition" className="py-32 lg:py-40 px-6 lg:px-12">
       <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-          <div
-            className={`relative aspect-[4/5] bg-sand overflow-hidden transition-all duration-1000 ${
-              isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
-            }`}
-          >
-            <img
-              src="/minimalist-japanese-interior-design-with-natural-w.jpg"
-              alt="Определение языка"
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-            <div className="absolute bottom-0 left-0 w-24 h-24 bg-terracotta/80" />
-          </div>
-
-          <div className="lg:pl-8">
+        <div className="max-w-3xl">
+          <div>
             <p
               className={`text-xs tracking-[0.3em] uppercase text-terracotta mb-6 transition-all duration-1000 delay-200 ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
