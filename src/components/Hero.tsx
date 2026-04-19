@@ -17,7 +17,7 @@ export function Hero() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
-          Учебный материал
+          Учебный материал · <span className="italic text-blue-500 normal-case">Хоснуллина Э.Р.</span>
         </p>
 
         <h1

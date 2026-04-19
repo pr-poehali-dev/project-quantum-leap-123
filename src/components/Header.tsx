@@ -10,7 +10,7 @@ export function Header() {
           <a href="/" className="font-serif text-xl tracking-wide text-foreground">
             Лекция
           </a>
-          <span className="hidden md:block text-sm italic text-blue-500 ml-4">Хоснуллина Э.Р.</span>
+
 
           <div className="hidden md:flex items-center gap-12">
             <a href="#definition" className="text-sm tracking-widest uppercase text-muted-foreground hover:text-foreground transition-colors duration-500">
