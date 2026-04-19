@@ -1,120 +1,153 @@
 import { useEffect, useRef, useState } from "react"
 
-const services = [
+const topics = [
   {
-    title: "Жилые интерьеры",
-    description: "Полное преображение дома с учётом вашего образа жизни. От отдельных комнат до целых резиденций.",
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-        />
-      </svg>
-    ),
+    number: "2",
+    title: "Основные аспекты культуры речи",
+    short: "Культура речи",
+    content: [
+      { label: "Правильность", text: "Соответствие языковым нормам: грамматическим, орфографическим, пунктуационным." },
+      { label: "Точность", text: "Использование слов и выражений, адекватно отражающих смысл." },
+      { label: "Логичность", text: "Последовательное и аргументированное изложение мыслей." },
+      { label: "Чистота", text: "Отсутствие жаргонизмов, слов-паразитов, просторечий." },
+      { label: "Выразительность", text: "Богатство лексики, образность, эмоциональная окраска." },
+      { label: "Уместность", text: "Соответствие речи ситуации, аудитории и цели общения." },
+    ],
   },
   {
-    title: "Планировка",
-    description: "Продуманные решения, создающие естественный поток и функциональные зоны для жизни, работы и отдыха.",
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
-        />
-      </svg>
-    ),
+    number: "3",
+    title: "Языковые и речевые нормы",
+    short: "Нормы",
+    content: [
+      { label: "Орфоэпические", text: "Правильное произношение слов и звуков." },
+      { label: "Грамматические", text: "Морфология и синтаксис — строение слов и предложений." },
+      { label: "Лексические", text: "Употребление слов по их значению." },
+      { label: "Орфографические", text: "Правильное написание слов." },
+      { label: "Речевые нормы", text: "Уместность, логичность, последовательность, соответствие стилю и жанру речи." },
+    ],
   },
   {
-    title: "Подбор материалов",
-    description: "Натуральные материалы и авторские предметы ручной работы, которые красиво стареют и рассказывают историю.",
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"
-        />
-      </svg>
-    ),
+    number: "4",
+    title: "Речевые формулы и речевой этикет",
+    short: "Речевой этикет",
+    content: [
+      { label: "Речевые формулы", text: "Стандартные выражения для начала, поддержания и завершения общения: «Добрый день!», «Позвольте уточнить...», «Благодарю за внимание!»" },
+      { label: "Речевой этикет", text: "Совокупность правил вежливого общения: обращение, приветствие, прощание, выражение благодарности и извинения." },
+    ],
   },
   {
-    title: "Светодизайн",
-    description: "Многоуровневое освещение, меняющееся в течение дня, создающее атмосферу и поддерживающее благополучие.",
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-        />
-      </svg>
-    ),
+    number: "5",
+    title: "Терминология и профессиональная лексика",
+    short: "Терминология",
+    content: [
+      { label: "Терминология", text: "Система терминов, обозначающих понятия определённой профессиональной области." },
+      { label: "Профессиональная лексика", text: "Слова и выражения, характерные для конкретной сферы деятельности: «дебет», «кредит», «алгоритм», «диспансеризация»." },
+    ],
+  },
+  {
+    number: "6",
+    title: "Язык специальности",
+    short: "Язык специальности",
+    content: [
+      { label: "Определение", text: "Разновидность языка, используемая в определённой профессиональной среде." },
+      { label: "Особенности", text: "Отличается точностью, лаконичностью, использованием терминов и специфических конструкций." },
+    ],
+  },
+  {
+    number: "7",
+    title: "Отраслевые терминологические словари",
+    short: "Словари",
+    content: [
+      { label: "Что это", text: "Справочные издания с систематизированным перечнем терминов по определённой отрасли знаний или профессии." },
+      { label: "Примеры", text: "«Медицинский словарь», «Юридический словарь», «Словарь экономических терминов»." },
+    ],
   },
 ]
 
 export function Services() {
   const [isVisible, setIsVisible] = useState(false)
+  const [activeTopic, setActiveTopic] = useState<number | null>(null)
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
+      ([entry]) => { if (entry.isIntersecting) setIsVisible(true) },
       { threshold: 0.1 },
     )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current)
     return () => observer.disconnect()
   }, [])
 
   return (
-    <section ref={sectionRef} id="services" className="py-32 lg:py-40 px-6 lg:px-12 bg-sand/50">
+    <section ref={sectionRef} id="topics" className="py-32 lg:py-40 px-6 lg:px-12 bg-sand/50">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
         <div className="text-center mb-20">
           <p
             className={`text-xs tracking-[0.3em] uppercase text-terracotta mb-6 transition-all duration-1000 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            Наши услуги
+            Темы лекции
           </p>
           <h2
             className={`font-serif text-4xl md:text-5xl lg:text-6xl font-light text-foreground text-balance transition-all duration-1000 delay-200 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
-            Что мы делаем
+            Выберите раздел
           </h2>
+          <p
+            className={`text-muted-foreground mt-4 transition-all duration-1000 delay-300 ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
+          >
+            Нажмите на кнопку, чтобы раскрыть содержание
+          </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid md:grid-cols-2 gap-px bg-border">
-          {services.map((service, index) => (
-            <div
-              key={service.title}
-              className={`group bg-background p-10 lg:p-14 transition-all duration-1000 hover:bg-card ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        {/* Topic Buttons */}
+        <div
+          className={`flex flex-wrap gap-3 justify-center mb-16 transition-all duration-1000 delay-400 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
+          {topics.map((topic, index) => (
+            <button
+              key={index}
+              onClick={() => setActiveTopic(activeTopic === index ? null : index)}
+              className={`px-6 py-3 text-sm tracking-wider uppercase border transition-all duration-300 ${
+                activeTopic === index
+                  ? "bg-sage text-primary-foreground border-sage"
+                  : "bg-background text-muted-foreground border-border hover:border-sage hover:text-foreground"
               }`}
-              style={{ transitionDelay: `${300 + index * 150}ms` }}
             >
-              <div className="text-sage mb-6 transition-transform duration-500 group-hover:scale-110">
-                {service.icon}
-              </div>
-              <h3 className="font-serif text-2xl md:text-3xl text-foreground mb-4">{service.title}</h3>
-              <p className="text-muted-foreground leading-relaxed">{service.description}</p>
-            </div>
+              {topic.short}
+            </button>
           ))}
         </div>
+
+        {/* Active Topic Content */}
+        {activeTopic !== null && (
+          <div
+            className="max-w-4xl mx-auto bg-background border border-border p-10 lg:p-14 transition-all duration-500"
+            key={activeTopic}
+          >
+            <p className="text-xs tracking-[0.3em] uppercase text-terracotta mb-4">
+              Раздел {topics[activeTopic].number}
+            </p>
+            <h3 className="font-serif text-3xl md:text-4xl font-light text-foreground mb-10">
+              {topics[activeTopic].title}
+            </h3>
+            <div className="space-y-6">
+              {topics[activeTopic].content.map((item, i) => (
+                <div key={i} className="grid sm:grid-cols-[200px_1fr] gap-3 sm:gap-6 py-4 border-t border-border first:border-t-0 first:pt-0">
+                  <span className="text-xs tracking-widest uppercase text-sage font-medium pt-1">{item.label}</span>
+                  <p className="text-muted-foreground leading-relaxed">{item.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   )
